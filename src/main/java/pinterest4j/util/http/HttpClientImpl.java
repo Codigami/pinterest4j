@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -35,10 +37,12 @@ public class HttpClientImpl implements HttpClient {
 
             String resp = HttpUtil.getResponseAsString(in);
 
+            Map<String, List<String>> headerFields = con.getHeaderFields();
+
             // close the stream
             in.close();
 
-            return new HttpResponse(statusCode, resp, new JSONObject(resp));
+            return new HttpResponse(statusCode, resp, new JSONObject(resp), headerFields);
 
         } catch (IOException e) {
             // log error

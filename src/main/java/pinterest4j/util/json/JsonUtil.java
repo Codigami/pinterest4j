@@ -1,6 +1,5 @@
 package pinterest4j.util.json;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -31,5 +30,28 @@ public class JsonUtil {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    public static String getImageUrl60x60(JSONObject json) {
+        if (!json.isNull("image")) {
+            JSONObject image = json.getJSONObject("image");
+            if (!image.isNull("60x60")) {
+                image = image.getJSONObject("60x60");
+                return getString("url", image);
+            }
+        }
+        return null;
+    }
+
+    public static String getImageUrlOriginal(JSONObject json) {
+        if (!json.isNull("image")) {
+            JSONObject image = json.getJSONObject("image");
+            if (!image.isNull("original")) {
+                image = image.getJSONObject("original");
+                return getString("url", image);
+            }
+        }
+
+        return null;
     }
 }

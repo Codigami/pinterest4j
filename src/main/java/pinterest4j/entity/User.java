@@ -2,6 +2,7 @@ package pinterest4j.entity;
 
 import org.joda.time.DateTime;
 import org.json.JSONObject;
+import pinterest4j.util.http.HttpResponse;
 import pinterest4j.util.json.JsonUtil;
 
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.io.Serializable;
  *
  * Created by Aniket Divekar.
  */
-public class User implements Serializable{
+public class User extends PinterestBaseEntity implements Serializable{
 
     private static final long serialVersionUID = -1966121343500495296L;
     private String id;
@@ -25,7 +26,17 @@ public class User implements Serializable{
     private Counts counts;
     private String imageUrl;
 
-    public User(JSONObject json) {
+
+    public User(HttpResponse res) {
+        super(res);
+        init(res.getResponseJson().getJSONObject("data"));
+    }
+
+    User(JSONObject json) {
+        init(json);
+    }
+
+    private void init(JSONObject json) {
         this.id = JsonUtil.getString("id", json);
         this.username = JsonUtil.getString("username", json);
         this.firstName = JsonUtil.getString("first_name", json);
@@ -34,14 +45,7 @@ public class User implements Serializable{
         this.bio = JsonUtil.getString("bio", json);
         this.url = JsonUtil.getString("url", json);
         this.createdAt = new DateTime(JsonUtil.getString("created_at", json));
-
-        if (!json.isNull("image")) {
-            JSONObject image = json.getJSONObject("image");
-            if (!image.isNull("60x60")) {
-                image = image.getJSONObject("60x60");
-                this.imageUrl = JsonUtil.getString("url", image);
-            }
-        }
+        this.imageUrl = JsonUtil.getImageUrl60x60(json);
 
         if (!json.isNull("counts")) {
             JSONObject counts = json.getJSONObject("counts");

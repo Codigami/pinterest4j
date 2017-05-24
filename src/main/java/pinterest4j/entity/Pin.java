@@ -2,6 +2,7 @@ package pinterest4j.entity;
 
 import org.joda.time.DateTime;
 import org.json.JSONObject;
+import pinterest4j.util.http.HttpResponse;
 import pinterest4j.util.json.JsonUtil;
 
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.io.Serializable;
  *
  * Created by Aniket Divekar.
  */
-public class Pin implements Serializable {
+public class Pin extends PinterestBaseEntity implements Serializable {
 
     private static final long serialVersionUID = -3300936372244598773L;
     private String id;
@@ -27,7 +28,12 @@ public class Pin implements Serializable {
     private String imageUrl;
     private Counts counts;
 
-    public Pin(JSONObject json) {
+    public Pin(HttpResponse res) {
+        super(res);
+        init(res.getResponseJson().getJSONObject("data"));
+    }
+    
+    private void init(JSONObject json) {
         this.id = JsonUtil.getString("id", json);
         this.url = JsonUtil.getString("url", json);
         if (!json.isNull("creator")) {
@@ -43,13 +49,7 @@ public class Pin implements Serializable {
             this.board = new Board(json.getJSONObject("board"));
         }
 
-        if (!json.isNull("image")) {
-            JSONObject image = json.getJSONObject("image");
-            if (!image.isNull("original")) {
-                image = image.getJSONObject("original");
-                this.imageUrl = JsonUtil.getString("url", image);
-            }
-        }
+        this.imageUrl = JsonUtil.getImageUrlOriginal(json);
 
         if (!json.isNull("counts")) {
             this.counts = new Counts(json.getJSONObject("counts"));
