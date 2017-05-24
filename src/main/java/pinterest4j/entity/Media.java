@@ -6,7 +6,7 @@ import pinterest4j.util.json.JsonUtil;
 import java.io.Serializable;
 
 /**
- *
+ * Entity representing Pinterest Media
  *
  * Created by Aniket Divekar.
  */

@@ -11,7 +11,7 @@ import pinterest4j.util.json.JsonObjectHelperImpl;
 import pinterest4j.util.json.ObjectHelper;
 
 /**
- *
+ * This class is representation of Pinterest REST APIs
  *
  * Created by Aniket Divekar.
  */

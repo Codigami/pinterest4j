@@ -1,6 +1,8 @@
 package pinterest4j.util.http;
 
 /**
+ * Enum for representing HTTP Response codes
+ *
  * Created by Aniket Divekar.
  */
 public enum HttpResponseCodes {

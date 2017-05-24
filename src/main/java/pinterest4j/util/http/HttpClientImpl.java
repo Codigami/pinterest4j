@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Client for making HTTP calls
  *
  * Created by Aniket Divekar.
  */

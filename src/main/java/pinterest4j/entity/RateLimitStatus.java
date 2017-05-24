@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Entity representing Rate limit status for Pinterest API
+ *
  * Created by Aniket Divekar.
  */
 public class RateLimitStatus {

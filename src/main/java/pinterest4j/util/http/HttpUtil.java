@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ * Utility for handling http response from {@link HttpsURLConnection#getInputStream()}, {@link HttpsURLConnection#getErrorStream()}
+ *
  * Created by Aniket Divekar.
  */
 public class HttpUtil {

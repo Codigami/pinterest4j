@@ -3,6 +3,7 @@ package pinterest4j.util.json;
 import org.json.JSONObject;
 
 /**
+ * Utility class for parsing input JSON
  *
  *  Created by Aniket Divekar.
  */

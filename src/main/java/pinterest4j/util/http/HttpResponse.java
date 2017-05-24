@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Entity to represent HTTP Response.
+ *
  * Created by Aniket Divekar.
  */
 public class HttpResponse {

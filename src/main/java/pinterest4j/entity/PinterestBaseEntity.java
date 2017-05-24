@@ -3,6 +3,7 @@ package pinterest4j.entity;
 import pinterest4j.util.http.HttpResponse;
 
 /**
+ * Base Entity for Pinterest
  *
  * Created by Aniket Divekar.
  */

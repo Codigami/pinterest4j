@@ -1,13 +1,11 @@
 package pinterest4j.config;
 
-import java.io.Serializable;
-
 /**
- *
+ * Configuration class with default settings
  *
  * Created by Aniket Divekar.
  */
-public class ConfigurationImpl implements Configuration, Serializable {
+public class ConfigurationImpl implements Configuration {
 
     private static final long serialVersionUID = -912105459125357372L;
     private String restBaseUrl = "https://api.pinterest.com/v1";

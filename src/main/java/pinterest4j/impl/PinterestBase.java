@@ -8,6 +8,8 @@ import pinterest4j.util.http.HttpClientImpl;
 import java.io.Serializable;
 
 /**
+ * Base class for Pinteres to support OAuth
+ *
  * Created by Aniket Divekar.
  */
 abstract class PinterestBase implements Serializable {

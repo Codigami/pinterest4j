@@ -6,7 +6,7 @@ import pinterest4j.entity.User;
 import pinterest4j.util.http.HttpResponse;
 
 /**
- *
+ * Helper class to create Objects using response from Pinterest
  *
  * Created by Aniket Divekar.
  */

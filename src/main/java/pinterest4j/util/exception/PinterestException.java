@@ -4,6 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
+ * An exception class that will be thrown when Pinterest API calls are failed.<br>
+ *
  * Created by Aniket Divekar.
  */
 public class PinterestException extends Exception {
