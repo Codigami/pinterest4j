@@ -72,4 +72,12 @@ public class Counts  implements Serializable{
     public long getCollaborators() {
         return collaborators;
     }
+
+    public long getComments() {
+        return comments;
+    }
+
+    public long getRepins() {
+        return repins;
+    }
 }

@@ -36,7 +36,7 @@ public class RateLimitStatus {
     }
 
     static RateLimitStatus createRateLimitStatus(HttpResponse res) {
-        if (null == res) {
+        if (null == res || res.getResponseHeaderFields() == null) {
             return null;
         }
         Map<String, List<String>> headerFields = res.getResponseHeaderFields();
