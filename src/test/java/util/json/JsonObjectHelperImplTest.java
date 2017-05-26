@@ -27,7 +27,10 @@ import pinterest4j.util.http.HttpResponseCodes;
 import pinterest4j.util.json.JsonObjectHelperImpl;
 import pinterest4j.util.json.ObjectHelper;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Test cases for {@link JsonObjectHelperImpl}

@@ -21,6 +21,7 @@ import pinterest4j.util.exception.PinterestException;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
@@ -41,13 +42,12 @@ public class HttpUtil {
         return response.toString();
     }
 
-    public static HttpResponse handleNonOkResponse(HttpsURLConnection con, int statusCode) throws IOException, PinterestException {
-        BufferedReader in;
-        in = new BufferedReader(new InputStreamReader(con.getErrorStream(), "UTF-8"));
-        String resp = HttpUtil.getResponseAsString(in);
+    public static HttpResponse handleNonOkResponse(InputStream in, int statusCode) throws IOException, PinterestException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+        String resp = HttpUtil.getResponseAsString(br);
 
         // close the stream
-        in.close();
+        br.close();
 
         throw new PinterestException(resp, statusCode);
     }

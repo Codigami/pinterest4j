@@ -46,7 +46,7 @@ public class HttpClientImpl implements HttpClient {
 
             if (statusCode != HttpResponseCodes.OK.getResponseCode()) {
                 // non-ok response
-                return HttpUtil.handleNonOkResponse(con, statusCode);
+                return HttpUtil.handleNonOkResponse(con.getErrorStream(), statusCode);
             }
 
             in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));

@@ -23,7 +23,8 @@ package pinterest4j.util.http;
  */
 public enum HttpResponseCodes {
 
-    OK(200);
+    OK(200),
+    NOT_FOUND(404);
 
     private int responseCode;
 
