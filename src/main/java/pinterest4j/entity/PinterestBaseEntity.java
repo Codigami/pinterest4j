@@ -25,7 +25,7 @@ import pinterest4j.util.http.HttpResponse;
  * Created by Aniket Divekar.
  */
 public class PinterestBaseEntity implements BaseResponse {
-    private RateLimitStatus rateLimitStatus;
+    private transient RateLimitStatus rateLimitStatus;
 
     PinterestBaseEntity() {
         // default constructor
