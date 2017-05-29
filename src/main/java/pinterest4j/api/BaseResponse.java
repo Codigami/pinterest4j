@@ -14,29 +14,16 @@
  * limitations under the License.
  */
 
-package pinterest4j.entity;
+package pinterest4j.api;
 
-import pinterest4j.api.BaseResponse;
-import pinterest4j.util.http.HttpResponse;
+import pinterest4j.entity.RateLimitStatus;
 
 /**
- * Base Entity for Pinterest
+ * Interface to have base methods for Pinterest response
  *
  * Created by Aniket Divekar.
  */
-public class PinterestBaseEntity implements BaseResponse {
-    private transient RateLimitStatus rateLimitStatus;
+public interface BaseResponse {
 
-    PinterestBaseEntity() {
-        // default constructor
-    }
-
-    PinterestBaseEntity(HttpResponse res) {
-        this.rateLimitStatus = RateLimitStatus.createRateLimitStatus(res);
-    }
-
-    @Override
-    public RateLimitStatus getRateLimitStatus() {
-        return rateLimitStatus;
-    }
+    RateLimitStatus getRateLimitStatus();
 }
