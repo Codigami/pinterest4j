@@ -35,7 +35,7 @@ public class RateLimitStatus {
         this.remaining = remaining;
     }
 
-    static RateLimitStatus createRateLimitStatus(HttpResponse res) {
+    public static RateLimitStatus createRateLimitStatus(HttpResponse res) {
         if (null == res || res.getResponseHeaderFields() == null) {
             return null;
         }
@@ -48,11 +48,6 @@ public class RateLimitStatus {
         }
 
         return new RateLimitStatus(Integer.valueOf(limits.get(0)), Integer.valueOf(remaining.get(0)));
-    }
-
-    public void init (int limit, int remaining) {
-        this.limit = limit;
-        this.remaining = remaining;
     }
 
     public int getLimit() {
