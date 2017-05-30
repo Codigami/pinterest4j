@@ -15,11 +15,11 @@
         <jdk.version>1.8</jdk.version>
         <joda-time.version>2.9.9</joda-time.version>
         <json.version>20160810</json.version>
+        <junit.version>4.4</junit.version>
         <artifact.name>pinterest4j-core</artifact.name>
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -35,9 +35,8 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.4</version>
+            <version>${junit.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -49,6 +48,24 @@
                 <configuration>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+            <!-- to generate the MANIFEST-FILE of the bundle -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Export-Package>
+                            pinterest4j.api.Pinterest,
+                            pinterest4j.impl,
+                            pinterest4j.auth,
+                            pinterest4j.config,
+                            pinterest4j.entity,
+                            pinterest4j.util.exception,
+                            pinterest4j.util.list,
+                        </Export-Package>
+                    </instructions>
                 </configuration>
             </plugin>
         </plugins>
