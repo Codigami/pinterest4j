@@ -25,4 +25,10 @@ import pinterest4j.util.exception.PinterestException;
 public interface HttpClient {
 
     HttpResponse get(String url) throws PinterestException;
+
+    HttpResponse delete(String url) throws PinterestException;
+
+    HttpResponse post(String requestUrl, QueryParam[] params) throws PinterestException;
+
+    HttpResponse patch(String url, QueryParam[] params) throws PinterestException;
 }

@@ -23,10 +23,10 @@ import pinterest4j.entity.Board;
 import pinterest4j.entity.Pin;
 import pinterest4j.entity.User;
 import pinterest4j.util.http.HttpResponse;
-import pinterest4j.util.http.HttpResponseCodes;
 import pinterest4j.util.json.JsonObjectHelperImpl;
 import pinterest4j.util.json.ObjectHelper;
 
+import java.net.HttpURLConnection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +51,7 @@ public class JsonObjectHelperImplTest extends TestCase {
                 " \"id\": \"750140950372852834\", \"description\": \"\"}}";
 
 
-        HttpResponse resp = new HttpResponse(HttpResponseCodes.OK.getResponseCode(), RAW_BOARD_JSON,
+        HttpResponse resp = new HttpResponse(HttpURLConnection.HTTP_OK, RAW_BOARD_JSON,
                 new JSONObject(RAW_BOARD_JSON), null);
         Board board = objectHelper.createBoard(resp);
 
@@ -73,7 +73,7 @@ public class JsonObjectHelperImplTest extends TestCase {
                 "\"width\": 60, \"height\": 60}}, \"counts\": {\"pins\": 129, \"following\": 7, \"followers\": 5, " +
                 "\"boards\": 6, \"likes\": 6}, \"id\": \"750131012032379713\"}}";
 
-        HttpResponse resp = new HttpResponse(HttpResponseCodes.OK.getResponseCode(), RAW_USER_JSON,
+        HttpResponse resp = new HttpResponse(HttpURLConnection.HTTP_OK, RAW_USER_JSON,
                 new JSONObject(RAW_USER_JSON), getResponseHeaders());
         User user = objectHelper.createUser(resp);
 
@@ -105,7 +105,7 @@ public class JsonObjectHelperImplTest extends TestCase {
                 "\"width\": 700, \"height\": 1008}}, " +
                 "\"counts\": {\"likes\": 2, \"comments\": 0, \"repins\": 5}, \"id\": \"750130881654060304\"}}";
 
-        HttpResponse resp = new HttpResponse(HttpResponseCodes.OK.getResponseCode(), RAW_PIN_JSON,
+        HttpResponse resp = new HttpResponse(HttpURLConnection.HTTP_OK, RAW_PIN_JSON,
                 new JSONObject(RAW_PIN_JSON), null);
         Pin pin = objectHelper.createPin(resp);
 
