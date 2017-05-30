@@ -17,9 +17,14 @@
 package pinterest4j.entity;
 
 import org.joda.time.DateTime;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import pinterest4j.util.exception.PinterestException;
 import pinterest4j.util.http.HttpResponse;
 import pinterest4j.util.json.JsonUtil;
+import pinterest4j.util.list.PageResponseList;
+import pinterest4j.util.list.PageResponseListImpl;
 
 import java.io.Serializable;
 
@@ -69,6 +74,24 @@ public class User extends PinterestBaseEntity implements Serializable{
         }
     }
 
+    public static PageResponseList<User> createPageUserList(HttpResponse res) throws PinterestException{
+        try {
+            JSONArray list = res.getResponseJson().getJSONArray("data");
+            int size = list.length();
+            PageResponseList<User> users = new PageResponseListImpl<>(size, res);
+
+            for(int index = 0; index < size; index++) {
+                JSONObject userJson = list.getJSONObject(index);
+                users.add(new User(userJson));
+            }
+
+            return users;
+
+        } catch (JSONException e){
+            throw new PinterestException(e.getMessage(), e);
+        }
+    }
+
     public String getId() {
         return id;
     }
@@ -107,5 +130,21 @@ public class User extends PinterestBaseEntity implements Serializable{
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", accountType='" + accountType + '\'' +
+                ", bio='" + bio + '\'' +
+                ", url='" + url + '\'' +
+                ", createdAt=" + createdAt +
+                ", counts=" + counts +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
     }
 }

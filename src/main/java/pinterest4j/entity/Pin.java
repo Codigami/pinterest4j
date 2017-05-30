@@ -17,9 +17,14 @@
 package pinterest4j.entity;
 
 import org.joda.time.DateTime;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import pinterest4j.util.exception.PinterestException;
 import pinterest4j.util.http.HttpResponse;
 import pinterest4j.util.json.JsonUtil;
+import pinterest4j.util.list.PageResponseList;
+import pinterest4j.util.list.PageResponseListImpl;
 
 import java.io.Serializable;
 
@@ -48,6 +53,10 @@ public class Pin extends PinterestBaseEntity implements Serializable {
         super(res);
         init(res.getResponseJson().getJSONObject("data"));
     }
+
+    Pin(JSONObject json) {
+        init(json);
+    }
     
     private void init(JSONObject json) {
         this.id = JsonUtil.getString("id", json);
@@ -73,6 +82,24 @@ public class Pin extends PinterestBaseEntity implements Serializable {
 
         if(!json.isNull("media")) {
             this.media = new Media(json.getJSONObject("media"));
+        }
+    }
+
+    public static PageResponseList<Pin> createPagePinList(HttpResponse res) throws PinterestException {
+        try {
+            JSONArray list = res.getResponseJson().getJSONArray("data");
+            int size = list.length();
+            PageResponseList<Pin> pins = new PageResponseListImpl<>(size, res);
+
+            for(int index = 0; index < size; index++) {
+                JSONObject pinJson = list.getJSONObject(index);
+                pins.add(new Pin(pinJson));
+            }
+
+            return pins;
+
+        } catch (JSONException e){
+            throw new PinterestException(e.getMessage(), e);
         }
     }
 
@@ -122,5 +149,23 @@ public class Pin extends PinterestBaseEntity implements Serializable {
 
     public Counts getCounts() {
         return counts;
+    }
+
+    @Override
+    public String toString() {
+        return "Pin{" +
+                "id='" + id + '\'' +
+                ", creator=" + creator +
+                ", url='" + url + '\'' +
+                ", media=" + media +
+                ", createdAt=" + createdAt +
+                ", originalLink='" + originalLink + '\'' +
+                ", note='" + note + '\'' +
+                ", color='" + color + '\'' +
+                ", link='" + link + '\'' +
+                ", board=" + board +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", counts=" + counts +
+                '}';
     }
 }

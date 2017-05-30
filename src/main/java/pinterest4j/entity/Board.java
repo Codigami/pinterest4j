@@ -17,9 +17,16 @@
 package pinterest4j.entity;
 
 import org.joda.time.DateTime;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import pinterest4j.util.exception.PinterestException;
 import pinterest4j.util.http.HttpResponse;
 import pinterest4j.util.json.JsonUtil;
+import pinterest4j.util.list.PageResponseList;
+import pinterest4j.util.list.PageResponseListImpl;
+import pinterest4j.util.list.ResponseList;
+import pinterest4j.util.list.ResponseListImpl;
 
 import java.io.Serializable;
 
@@ -71,6 +78,43 @@ public class Board extends PinterestBaseEntity implements Serializable {
         this.description = JsonUtil.getString("description", json);
     }
 
+    public static ResponseList<Board> createBoardList(HttpResponse res) throws PinterestException {
+        try {
+
+            JSONArray list = res.getResponseJson().getJSONArray("data");
+            int size = list.length();
+            ResponseList<Board> boards = new ResponseListImpl<>(size, res);
+
+            for(int index = 0; index < size; index++) {
+                JSONObject boardJson = list.getJSONObject(index);
+                boards.add(new Board(boardJson));
+            }
+
+            return boards;
+
+        } catch (JSONException e){
+            throw new PinterestException(e.getMessage(), e);
+        }
+    }
+
+    public static PageResponseList<Board> createPageBoardList(HttpResponse res) throws PinterestException {
+        try {
+
+            JSONArray list = res.getResponseJson().getJSONArray("data");
+            int size = list.length();
+            PageResponseList<Board> boards = new PageResponseListImpl<>(size, res);
+
+            for(int index = 0; index < size; index++) {
+                JSONObject boardJson = list.getJSONObject(index);
+                boards.add(new Board(boardJson));
+            }
+
+            return boards;
+
+        } catch (JSONException e){
+            throw new PinterestException(e.getMessage(), e);
+        }
+    }
 
     public String getId() {
         return id;
@@ -106,5 +150,20 @@ public class Board extends PinterestBaseEntity implements Serializable {
 
     public Counts getCounts() {
         return counts;
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", creator=" + creator +
+                ", url='" + url + '\'' +
+                ", createdAt=" + createdAt +
+                ", privacy='" + privacy + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", description='" + description + '\'' +
+                ", counts=" + counts +
+                '}';
     }
 }
