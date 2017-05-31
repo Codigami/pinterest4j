@@ -17,9 +17,13 @@
 package pinterest4j.util.json;
 
 import pinterest4j.entity.Board;
+import pinterest4j.entity.Interest;
 import pinterest4j.entity.Pin;
 import pinterest4j.entity.User;
+import pinterest4j.util.exception.PinterestException;
 import pinterest4j.util.http.HttpResponse;
+import pinterest4j.util.list.PageResponseList;
+import pinterest4j.util.list.ResponseList;
 
 /**
  *
@@ -32,5 +36,15 @@ public interface ObjectHelper {
     Board createBoard(HttpResponse res);
 
     Pin createPin(HttpResponse res);
+
+    ResponseList<Board> createBoardList(HttpResponse res) throws PinterestException;
+
+    PageResponseList<Board> createPageBoardList(HttpResponse res) throws PinterestException;
+
+    PageResponseList<User> createPageUserList(HttpResponse res) throws PinterestException;
+
+    PageResponseList<Pin> createPagePinList(HttpResponse res) throws PinterestException;
+
+    PageResponseList<Interest> createPageInterestList(HttpResponse res) throws PinterestException;
 
 }

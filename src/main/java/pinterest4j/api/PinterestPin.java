@@ -19,6 +19,8 @@ package pinterest4j.api;
 import pinterest4j.entity.Pin;
 import pinterest4j.util.exception.PinterestException;
 
+import java.io.File;
+
 /**
  * Provides all the interfaces for Pinterest <b>Pin</b> APIs
  *
@@ -40,7 +42,7 @@ public interface PinterestPin {
      * @param id id of the pin
      *
      * @return {@link Pin}
-     * @throws PinterestException
+     * @throws PinterestException when Pinterest is unavailable or sends an error
      */
     Pin getPin(String id) throws PinterestException;
 
@@ -69,7 +71,197 @@ public interface PinterestPin {
      * @param fields array of specific fields required to be queried from Pinterest
      *
      * @return {@link Pin}
-     * @throws PinterestException
+     * @throws PinterestException when Pinterest is unavailable or sends an error
      */
     Pin getPin(String id, String[] fields) throws PinterestException;
+
+    /**
+     *
+     * Create {@link Pin} and get pin's default fields as response after creating the pin
+     * Default fields returned by Pinterest are:
+     * <ul>
+     *  <li>id</li>
+     *  <li>link</li>
+     *  <li>note</li>
+     *  <li>url</li>
+     * </ul>
+     *
+     * @param username handle of the creator
+     * @param board name of the board where pin is to be created
+     * @param note note for the board
+     * @param link link for the board
+     * @param imageUrl link to the image you want to Pin
+     *
+     * @return {@link Pin}
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    Pin createPinWithImageUrl(String username, String board, String note, String link, String imageUrl) throws PinterestException;
+
+    /**
+     *
+     * Create {@link Pin} and get pin's specified fields as response after creating the pin
+     * Default fields returned by Pinterest are:
+     * <ul>
+     *  <li>id</li>
+     *  <li>link</li>
+     *  <li>note</li>
+     *  <li>url</li>
+     * </ul>
+     *
+     * @param username handle of the creator
+     * @param board name of the board where pin is to be created
+     * @param note note for the board
+     * @param link link for the board
+     * @param imageUrl link to the image you want to Pin
+     * @param fields array of specific fields required to be queried from Pinterest
+     *
+     * @return {@link Pin}
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    Pin createPinWithImageUrl(String username, String board, String note, String link, String imageUrl, String[] fields) throws PinterestException;
+
+    /**
+     *
+     * Create {@link Pin} and get pin's default fields as response after creating the pin
+     * Default fields returned by Pinterest are:
+     * <ul>
+     *  <li>id</li>
+     *  <li>link</li>
+     *  <li>note</li>
+     *  <li>url</li>
+     * </ul>
+     *
+     * @param username handle of the creator
+     * @param board name of the board where pin is to be created
+     * @param note note for the board
+     * @param link link for the board
+     * @param imageUrl link of a Base64 encoded image you want to Pin
+     *
+     * @return {@link Pin}
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    Pin createPinWithBase64EncodedImageUrl(String username, String board, String note, String link, String imageUrl) throws PinterestException;
+
+    /**
+     *
+     * Create {@link Pin} and get pin's specified fields as response after creating the pin
+     * Default fields returned by Pinterest are:
+     * <ul>
+     *  <li>id</li>
+     *  <li>link</li>
+     *  <li>note</li>
+     *  <li>url</li>
+     * </ul>
+     *
+     * @param username handle of the creator
+     * @param board name of the board where pin is to be created
+     * @param note note for the board
+     * @param link link for the board
+     * @param imageUrl link of a Base64 encoded image you want to Pin
+     * @param fields array of specific fields required to be queried from Pinterest
+     *
+     * @return {@link Pin}
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    Pin createPinWithBase64EncodedImageUrl(String username, String board, String note, String link, String imageUrl, String[] fields) throws PinterestException;
+
+    /**
+     *
+     * Create {@link Pin} and get pin's default fields as response after creating the pin
+     * Default fields returned by Pinterest are:
+     * <ul>
+     *  <li>id</li>
+     *  <li>link</li>
+     *  <li>note</li>
+     *  <li>url</li>
+     * </ul>
+     *
+     * @param username handle of the creator
+     * @param board name of the board where pin is to be created
+     * @param note note for the pin
+     * @param link link for the pin
+     * @param image image file you want to Pin
+     *
+     * @return {@link Pin}
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    Pin createPinWithImageFile(String username, String board, String note, String link, File image) throws PinterestException;
+
+    /**
+     *
+     * Create {@link Pin} and get pin's specified fields as response after creating the pin
+     * Default fields returned by Pinterest are:
+     * <ul>
+     *  <li>id</li>
+     *  <li>link</li>
+     *  <li>note</li>
+     *  <li>url</li>
+     * </ul>
+     *
+     * @param username handle of the creator
+     * @param board name of the board where pin is to be created
+     * @param note note for the pin
+     * @param link link for the pin
+     * @param image image file you want to Pin
+     * @param fields array of specific fields required to be queried from Pinterest
+     *
+     * @return {@link Pin}
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    Pin createPinWithImageFile(String username, String board, String note, String link, File image, String[] fields) throws PinterestException;
+
+    /**
+     *
+     * Edit {@link Pin} and get pin default fields as response after editing the pin
+     * Default fields returned by Pinterest are:
+     * <ul>
+     *  <li>id</li>
+     *  <li>link</li>
+     *  <li>note</li>
+     *  <li>url</li>
+     * </ul>
+     *
+     * @param id id of the pin
+     * @param username handle of the creator
+     * @param board name of the board where the pin needs to be edited
+     * @param note new note for the pin
+     * @param link new link for the pin
+     *
+     * @return {@link Pin}
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    Pin editPin(String id, String username, String board, String note, String link) throws PinterestException;
+
+    /**
+     *
+     * Edit {@link Pin} and get pin's specified fields as response after editing the pin
+     * Default fields returned by Pinterest are:
+     * <ul>
+     *  <li>id</li>
+     *  <li>link</li>
+     *  <li>note</li>
+     *  <li>url</li>
+     * </ul>
+     *
+     * @param id id of the pin
+     * @param username handle of the creator
+     * @param board name of the board where the pin needs to be edited
+     * @param note new note for the pin
+     * @param link new link for the pin
+     * @param fields array of specific fields required to be queried from Pinterest
+     *
+     * @return {@link Pin}
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    Pin editPin(String id, String username, String board, String note, String link, String[] fields) throws PinterestException;
+
+    /**
+     *
+     * delete the pin
+     *
+     * @param id id of the pin to be deleted
+     *
+     * @throws PinterestException when Pinterest is unavailable or sends an error
+     */
+    void deletePin(String id) throws PinterestException;
 }
