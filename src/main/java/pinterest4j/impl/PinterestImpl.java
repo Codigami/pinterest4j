@@ -229,7 +229,7 @@ public class PinterestImpl extends PinterestBase implements Pinterest {
                 UrlEncodeUtil.getEncodedUrl(conf.getPinsRestBaseUrl() + "/",
                         new QueryParam("access_token", oAuth2Token.getAccessToken())),
                 new QueryParam[] {
-                        new QueryParam("board", username + "/" + board.replaceAll(" ", "-")),
+                        new QueryParam("board", username + "/" + board.replaceAll(" +", "-")),
                         new QueryParam("note", note),
                         new QueryParam("link", link),
                         new QueryParam("image_base64", imageUrl)
