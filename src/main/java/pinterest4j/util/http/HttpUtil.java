@@ -24,6 +24,7 @@ package pinterest4j.util.http;
 public final class HttpUtil {
 
     public final static String CONTENT_TYPE_FORM = "application/x-www-form-urlencoded;charset=UTF-8";
+    public final static String CONTENT_TYPE_MULTIPART = "multipart/form-data";
     public static final String CONTENT_TYPE_JPEG = "image/jpeg";
     public static final String CONTENT_TYPE_GIF = "image/gif";
     public static final String CONTENT_TYPE_PNG = "image/png";

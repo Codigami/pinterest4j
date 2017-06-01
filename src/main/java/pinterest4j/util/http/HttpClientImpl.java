@@ -81,11 +81,11 @@ public class HttpClientImpl implements HttpClient {
 
         if (!HttpRequestMethods.GET.name().equalsIgnoreCase(method) && params != null) {
             if (QueryParam.containsFile(params)) {
-                MultipartBody.Builder builder = new MultipartBody.Builder();
+                MultipartBody.Builder builder = new MultipartBody.Builder().setType(MediaType.parse(HttpUtil.CONTENT_TYPE_MULTIPART));
                 for (QueryParam param : params) {
                     if (param.isFile()) {
                         builder.addFormDataPart(param.getKey(), param.getFile().getName(), RequestBody.create(MediaType.parse(param.getContentType()), param.getFile()));
-                    } else {
+                    } else if (param.getValue() != null){
                         builder.addFormDataPart(param.getKey(), param.getValue());
                     }
                 }
