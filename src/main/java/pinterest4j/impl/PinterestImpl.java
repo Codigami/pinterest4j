@@ -95,24 +95,24 @@ public class PinterestImpl extends PinterestBase implements Pinterest {
     }
 
     @Override
-    public Board createBoard(String username, String board, String description) throws PinterestException {
+    public Board createBoard(String name, String description) throws PinterestException {
         return objectHelper.createBoard(http.post(
                 UrlEncodeUtil.getEncodedUrl(conf.getBoardsRestBaseUrl() + "/",
                         new QueryParam("access_token", oAuth2Token.getAccessToken())),
                 new QueryParam[] {
-                        new QueryParam("name", username + "/" + board.replaceAll(" +", "-")),
+                        new QueryParam("name", name),
                         new QueryParam("description", description)
                 }));
     }
 
     @Override
-    public Board createBoard(String username, String board, String description, String[] fields) throws PinterestException {
+    public Board createBoard(String name, String description, String[] fields) throws PinterestException {
         return objectHelper.createBoard(http.post(
                 UrlEncodeUtil.getEncodedUrl(conf.getBoardsRestBaseUrl() + "/",
                         new QueryParam("access_token", oAuth2Token.getAccessToken()),
                         new QueryParam("fields", String.join(",", fields))),
                 new QueryParam[] {
-                        new QueryParam("name", username + "/" + board.replaceAll(" +", "-")),
+                        new QueryParam("name", name),
                         new QueryParam("description", description)
                 }));
     }

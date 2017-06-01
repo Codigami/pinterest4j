@@ -134,14 +134,13 @@ public interface PinterestBoard {
      *  <li>url</li>
      * </ul>
      *
-     * @param username handle of the board's creator
-     * @param board name of the board
+     * @param name name of the board
      * @param description description for the board
      *
      * @return {@link Board}
      * @throws PinterestException when Pinterest is unavailable or sends an error
      */
-    Board createBoard(String username, String board, String description) throws PinterestException;
+    Board createBoard(String name, String description) throws PinterestException;
 
     /**
      *
@@ -161,15 +160,14 @@ public interface PinterestBoard {
      *
      * <b>NOTE: <i>reason</i> field is planned to be included in future release</b>
      *
-     * @param username handle of the board's creator
-     * @param board name of the board
+     * @param name name of the board
      * @param description description for the board
      * @param fields array of specific fields required to be queried from Pinterest
      *
      * @return {@link Board}
      * @throws PinterestException when Pinterest is unavailable or sends an error
      */
-    Board createBoard(String username, String board, String description, String[] fields) throws PinterestException;
+    Board createBoard(String name, String description, String[] fields) throws PinterestException;
 
     /**
      *
