@@ -36,10 +36,6 @@ public class PinterestException extends Exception {
         this(message, null);
     }
 
-    public PinterestException(String message, int statusCode) {
-        this(statusCode, message, null);
-    }
-
     public PinterestException(int statusCode, String message) {
         this(statusCode, message, null);
     }

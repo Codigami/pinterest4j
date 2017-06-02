@@ -67,7 +67,7 @@ public class HttpClientImpl implements HttpClient {
 
             if (!response.isSuccessful()) {
                 // non-ok response
-                throw new PinterestException(response.message(), response.code());
+                throw new PinterestException(response.code(), response.message());
             }
 
             final String resp = response.body().string();
