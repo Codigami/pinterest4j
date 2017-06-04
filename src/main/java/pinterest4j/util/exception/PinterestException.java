@@ -36,11 +36,11 @@ public class PinterestException extends Exception {
         this(message, null);
     }
 
-    public PinterestException(String message, int statusCode) {
-        this(message, statusCode, null);
+    public PinterestException(int statusCode, String message) {
+        this(statusCode, message, null);
     }
 
-    public PinterestException(String message, int statusCode, Throwable cause) {
+    public PinterestException(int statusCode, String message, Throwable cause) {
         super(message, cause);
         this.message = getErrorMessage(message);
         this.statusCode = statusCode;
