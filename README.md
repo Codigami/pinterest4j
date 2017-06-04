@@ -3,3 +3,9 @@
 
 **_Contributors:_**
 - [Aniket Divekar](https://github.com/asdivekar)
+
+# How to use
+
+    // using default configurations
+    Pinterest pinterestObj = new PinterestImpl(new ConfigurationBcImpl(), new OAuth2Token("<access-token>"));
+    User user = pinterestObj.getUser("<username>");
