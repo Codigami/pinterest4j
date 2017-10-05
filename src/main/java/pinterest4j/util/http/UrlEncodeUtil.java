@@ -57,7 +57,7 @@ public final class UrlEncodeUtil {
         return query.toString();
     }
 
-    public static String encode(String value) {
+    private static String encode(String value) {
         if (value == null) {
             return "";
         }

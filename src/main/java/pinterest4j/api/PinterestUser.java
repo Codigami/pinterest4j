@@ -40,7 +40,7 @@ public interface PinterestUser {
      * @param id id of the user
      *
      * @return {@link User}
-     * @throws PinterestException
+     * @throws PinterestException when Pinterest is unavailable or sends an error
      */
     User getUser(String id) throws PinterestException;
 
@@ -65,7 +65,7 @@ public interface PinterestUser {
      * @param fields array of specific fields required to be queried from Pinterest
      *
      * @return {@link User}
-     * @throws PinterestException
+     * @throws PinterestException when Pinterest is unavailable or sends an error
      */
     User getUser(String id, String[] fields) throws PinterestException;
 

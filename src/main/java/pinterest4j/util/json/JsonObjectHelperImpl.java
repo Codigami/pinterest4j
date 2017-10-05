@@ -17,9 +17,13 @@
 package pinterest4j.util.json;
 
 import pinterest4j.entity.Board;
+import pinterest4j.entity.Interest;
 import pinterest4j.entity.Pin;
 import pinterest4j.entity.User;
+import pinterest4j.util.exception.PinterestException;
 import pinterest4j.util.http.HttpResponse;
+import pinterest4j.util.list.PageResponseList;
+import pinterest4j.util.list.ResponseList;
 
 /**
  * Helper class to create Objects using response from Pinterest
@@ -41,5 +45,31 @@ public class JsonObjectHelperImpl implements ObjectHelper {
     public Pin createPin(HttpResponse res) {
         return new Pin(res);
     }
+
+    @Override
+    public ResponseList<Board> createBoardList(HttpResponse res) throws PinterestException {
+        return Board.createBoardList(res);
+    }
+
+    @Override
+    public PageResponseList<Board> createPageBoardList(HttpResponse res) throws PinterestException {
+        return Board.createPageBoardList(res);
+    }
+
+    @Override
+    public PageResponseList<User> createPageUserList(HttpResponse res) throws PinterestException {
+        return User.createPageUserList(res);
+    }
+
+    @Override
+    public PageResponseList<Pin> createPagePinList(HttpResponse res) throws PinterestException {
+        return Pin.createPagePinList(res);
+    }
+
+    @Override
+    public PageResponseList<Interest> createPageInterestList(HttpResponse res) throws PinterestException {
+        return Interest.createPageInterestList(res);
+    }
+
 }
 
